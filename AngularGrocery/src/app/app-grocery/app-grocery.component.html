@@ -1,16 +1,24 @@
-<!-- <p>
-  app-grocery works!
-</p>
--->
+
 <div>
   <h2> Grocery List Manager </h2>
+
+  <P>
+    This Project is based on the reference from
+    <a href="https://code.tutsplus.com/tutorials/creating-a-grocery-list-manager-using-angular-part-1-add-display-items--cms-28586">Roy Agasthyan - Creating Grocery List using Angular</a>
+    <br>
+    Type a Grocery Item to add it in your list
+    <br>
+    You can either 'click' the button or press 'Enter' button
+  </P>
 
   <div class="row">
       <div class="col-xs-6 col-md-4">
           <div class="input-group">
-              <input type="text" class="form-control" placeholder="Enter Grocery Items" id="txtSearch" [(ngModel)]="task" />
+              <input type="text" class="form-control" placeholder="Enter Grocery Items" id="txtSearch" [(ngModel)]="task" (keydown.enter)="onClick()"/>
+              <!-- Added (keydown.enter)="onClick()" so that if the user press enter key it will call onClick function -->
               <div class="input-group-btn">
-                  <button class="btn btn-primary" type="button">
+                  <button class="btn btn-primary" type="button" (click)="onClick()"> 
+                    <!-- added (click)="onClick() here so that when the user clicks button it will be added to list group -->
                     <span class="glyphicon glyphicon-ok"></span>
                   </button>
               </div>
@@ -20,7 +28,7 @@
 
   <br />
   <ul class="list-group">
-      <li *ngFor="let task of tasks" class="list-group-item">
+            <li *ngFor="let task of tasks" class="list-group-item" >
           <span> {{ task.name }} </span>
       </li>
   </ul>
